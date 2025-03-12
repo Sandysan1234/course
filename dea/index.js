@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3001
+const port = 3000
 const bodyparser = require('body-parser')
 const db = require ("./connection")
 const response = require('./response')
@@ -15,6 +15,13 @@ app.get('/mahasiswa', (req, res) => {
   db.query(sql, (err,fields)=>{
     if(err) throw err
     response(200,fields,'mahasiswa get list', res)
+  })
+})
+app.get('/mahasiswa/:nim', (req, res) => {
+  const nim = req.params.nim
+  const sql = `SELECT * FROM mahasiswa WHERE nim = ${nim}`
+  db.query(sql, (err, fields)=>{
+    response(200,fields,'get details mahasiswa', res)
   })
 })
 
