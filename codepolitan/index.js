@@ -34,7 +34,6 @@ const requestpromise= (url) => {
 // })
 
 
-
         //  "CARA MENGGUNAKAN FUNGSI PROMISE YANG BENAR"
 // requestpromise('movie.com')
 //     .then((result)=>{
@@ -98,7 +97,6 @@ const requestpromise= (url) => {
 
 const hello = async () => {
     return "hello world"
-    throw 'maaf error'
 }
 
 hello().then((res)=>{
