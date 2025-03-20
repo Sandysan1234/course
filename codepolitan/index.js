@@ -1,13 +1,13 @@
-const requestcallback = (url, success, failure) => {
-  const delay = Math.floor(Math.random() * 4500) + 500;
-  setTimeout(() => {
-    if (delay > 4000) {
-      failure("error: connection timeout");
-    } else {
-      success(`Success: ${url}(${delay} ms)`);
-    }
-  }, delay);
-};
+// const requestcallback = (url, success, failure) => {
+//   const delay = Math.floor(Math.random() * 4500) + 500;
+//   setTimeout(() => {
+//     if (delay > 4000) {
+//       failure("error: connection timeout");
+//     } else {
+//       success(`Success: ${url}(${delay} ms)`);
+//     }
+//   }, delay);
+// };
 
 // const requestpromise = (url) => {
 //   return new Promise((resolve, reject) => {
@@ -129,27 +129,43 @@ const requestcallback = (url, success, failure) => {
 
 
         // MEGELOLA KONDISI EROR DENGAN ASYNC AWAIT
-const requestpromise = (url) => {
-    return new Promise((resolve, reject) => {
-        const delay = Math.floor(Math.random() * 4500) + 500;
-        setTimeout(() => {
-        if (delay > 4000) {
-            reject("error: connection timeout");
-        } else {
-            resolve(`Success: ${url}(${delay} ms)`);
-        }
-        }, delay);
-    });
-};
+// const requestpromise = (url) => {
+//     return new Promise((resolve, reject) => {
+//         const delay = Math.floor(Math.random() * 4500) + 500;
+//         setTimeout(() => {
+//         if (delay > 4000) {
+//             reject("error: connection timeout");
+//         } else {
+//             resolve(`Success: ${url}(${delay} ms)`);
+//         }
+//         }, delay);
+//     });
+// };
 
 
-async function erorhandler() {
-    try {
-        let result = await requestpromise('movie.com')
-        console.log(result);
+// async function erorhandler() {
+//     try {
+//         let result = await requestpromise('movie.com')
+//         console.log(result);
         
-    } catch (error) {
-        console.log('error', error);
+//     } catch (error) {
+//         console.log('error', error);
         
-    }
+//     }
+// }
+
+        //MELAKUKAN REQUEST DENGAN XMLHTTPREQUEST
+
+
+const req = new XMLHttpRequest();
+
+req.onload = function (){
+  console.log(this);  
 }
+
+req.onerror = function () {
+  console.log('Error', this);
+}
+
+req.open('GET', 'https://swapi.dev/api/people/1')
+req.send()
