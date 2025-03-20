@@ -1,40 +1,36 @@
-const requestcallback = (url, success, failure) =>{
-    const delay = Math.floor(Math.random() * 4500) + 500;
-    setTimeout(()=>{
-        if (delay > 4000){
-            failure('error: connection timeout')
-        }
-        else{
-            success(`Success: ${url}(${delay} ms)`)
-        }
-    },delay)
-}
+const requestcallback = (url, success, failure) => {
+  const delay = Math.floor(Math.random() * 4500) + 500;
+  setTimeout(() => {
+    if (delay > 4000) {
+      failure("error: connection timeout");
+    } else {
+      success(`Success: ${url}(${delay} ms)`);
+    }
+  }, delay);
+};
 
+// const requestpromise = (url) => {
+//   return new Promise((resolve, reject) => {
+//     const delay = Math.floor(Math.random() * 4500) + 500;
+//     setTimeout(() => {
+//       if (delay > 4000) {
+//         reject("error: connection timeout");
+//       } else {
+//         resolve(`Success: ${url}(${delay} ms)`);
+//       }
+//     }, delay);
+//   });
+// };
 
-const requestpromise= (url) => {
-    return new Promise((resolve, reject) => {
-        const delay = Math.floor(Math.random() * 4500) + 500;
-        setTimeout(()=>{
-            if (delay > 4000){
-                reject('error: connection timeout')
-            }
-            else{
-                resolve(`Success: ${url}(${delay} ms)`)
-            }
-        },delay)
-    })
-}
-
-        //CALLBACK FUNCTION TAPI MASIH GAGAL
+//CALLBACK FUNCTION TAPI MASIH GAGAL
 // requestpromise('movie.com').then((response)=>{
 //     console.log('succes', response);
 // }).catch((error) => {
 //     console.log('error',error);
-    
+
 // })
 
-
-        //  "CARA MENGGUNAKAN FUNGSI PROMISE YANG BENAR"
+//  "CARA MENGGUNAKAN FUNGSI PROMISE YANG BENAR"
 // requestpromise('movie.com')
 //     .then((result)=>{
 //         console.log('success1');
@@ -55,8 +51,7 @@ const requestpromise= (url) => {
 //         console.log(err);
 //     })
 
-
-    //"CARA MEMBAUT PROMISE"
+//"CARA MEMBAUT PROMISE"
 // const contohpromise=()=>{
 //     return new Promise((resolve, reject) => {
 //         resolve(()=>{
@@ -70,13 +65,12 @@ const requestpromise= (url) => {
 
 // }
 
-
 // const colordelaychange = (color, delay)=>{
 //     return new Promise ((resolve,reject)=>{
 //         setTimeout(() => {
 //             document.body.style.backgroundColor = color;
 //             resolve()
-//         }, delay); 
+//         }, delay);
 //     })
 // }
 
@@ -86,23 +80,76 @@ const requestpromise= (url) => {
 //     .then (()=>colordelaychange("green",1000))
 //     .then (()=>colordelaychange("yellow",1000))
 
-
-        // fungsi async keyword
+// fungsi async keyword
 
 // async function hello() {
 //     console.log("helloworld");
+
+// }
+
+// const hello = async () => {
+//     return "hello world"
+// }
+
+// hello().then((res)=>{
+//     console.log('response', res);
+
+// }).catch((err)=>{
+//     console.log('error', err);
+
+// })
+//async berguna untuk mengubah function biasa menjadi promise
+
+//END
+
+// // 'fungsi await keyword'
+// const colordelaychange = (color, delay) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       document.body.style.backgroundColor = color;
+//       resolve();
+//     }, delay);
+//   });
+// };
+
+// async function changecolor() {
+//   await colordelaychange("red", 1000);
+//   await colordelaychange("yellow", 1000);
+//   await colordelaychange("green", 1000);
+//   await colordelaychange("blue", 1000);
+
+//   return 'all done'
+// }
+
+// async function printrainbow() {
+//     await changecolor();
+//     console.log('all done');
     
 // }
 
 
-const hello = async () => {
-    return "hello world"
-}
+        // MEGELOLA KONDISI EROR DENGAN ASYNC AWAIT
+const requestpromise = (url) => {
+    return new Promise((resolve, reject) => {
+        const delay = Math.floor(Math.random() * 4500) + 500;
+        setTimeout(() => {
+        if (delay > 4000) {
+            reject("error: connection timeout");
+        } else {
+            resolve(`Success: ${url}(${delay} ms)`);
+        }
+        }, delay);
+    });
+};
 
-hello().then((res)=>{
-    console.log('response', res);
-    
-}).catch((err)=>{
-    console.log('error', err);
-    
-})
+
+async function erorhandler() {
+    try {
+        let result = await requestpromise('movie.com')
+        console.log(result);
+        
+    } catch (error) {
+        console.log('error', error);
+        
+    }
+}
